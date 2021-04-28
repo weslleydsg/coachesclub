@@ -1,6 +1,7 @@
 package br.edu.ufrn.coachesclub.ui.news
 
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,11 +24,15 @@ class NewsAdapter  : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
             item_title = itemView.findViewById(R.id.title_news)
 
             itemView.setOnClickListener {
+                val url = "https://www.inverse.com/gaming/genshin-impact-version-16-release-date-trailer-kazuha-klee-inzauma"
+                val intent2 = Intent(Intent.ACTION_VIEW)
                 val context = itemView.context
-                val intent = Intent(context, DetailNews::class.java).apply {
-                    putExtra("TITULO", item_title.text)
-                }
-                context.startActivity(intent)
+                intent2.data = Uri.parse(url)
+
+//                val intent = Intent(context, DetailNews::class.java).apply {
+//                    putExtra("TITULO", item_title.text)
+//                }
+                context.startActivity(intent2)
             }
         }
     }
