@@ -13,11 +13,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
+        val settings = getSharedPreferences(getString(R.string.app_prefs), 0)
+
+        settings.edit().putBoolean("is_first_start", false).apply()
+
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         val appBarConfiguration = AppBarConfiguration(setOf(
                 R.id.navigation_news, R.id.navigation_profile))
         setupActionBarWithNavController(navController, appBarConfiguration)

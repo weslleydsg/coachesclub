@@ -1,5 +1,16 @@
+<!DOCTYPE resources [
+    <!ENTITY app_name "Coaches Club">
+]>
 <resources>
-    <string name="app_name">Coaches Club</string>
+    <string name="app_name">&app_name;</string>
     <string name="title_news">Notícias</string>
     <string name="title_profile">Perfil</string>
+
+    <string name="app_prefs">CoachesClubPrefs</string>
+
+    <string name="welcome_title">Bem vindo ao &app_name;!!!</string>
+    <string name="welcome_body">Insira seu código de convite para começar:</string>
+    <string name="invite_key_hint">Código de Convite</string>
+    <string name="start_button_text">Começar</string>
+
 </resources>
