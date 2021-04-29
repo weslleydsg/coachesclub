@@ -1,8 +1,6 @@
 package br.edu.ufrn.coachesclub.ui.news
 
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -31,14 +29,10 @@ class NewsAdapter  : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
             item_image = itemView.findViewById(R.id.image_news)
 
             itemView.setOnClickListener() {
-                val url = news[layoutPosition].url_news
+                val url = news[layoutPosition].url
                 val intent = Intent(Intent.ACTION_VIEW)
                 val context = itemView.context
                 intent.data = Uri.parse(url)
-
-//                val intent = Intent(context, News::class.java).apply {
-//                    putExtra("TITULO", item_title.text)
-//                }
                 context.startActivity(intent)
             }
         }
@@ -50,9 +44,7 @@ class NewsAdapter  : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        val image = BitmapFactory.decodeFile(news[i].url_image)
-        viewHolder.item_title.text = news[i].title_news
-//        viewHolder.item_image.setImageBitmap(image)
+        viewHolder.item_title.text = news[i].title
 //        viewHolder.item_image.setImageBitmap(Uri.parse(news[i].url_image))
 //        viewHolder.item_image.setImageResource(news[i].url_image as Int)
 //        viewHolder.item_image.setImageURI(Uri.parse(news[i].url_image))

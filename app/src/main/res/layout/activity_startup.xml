@@ -36,6 +36,15 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/incorrect_code"
+        android:text="CÓDIGO INCORRETO"
+        android:textColor="#FF0000"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
+
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
