@@ -5,13 +5,13 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.ufrn.coachesclub.R
 
 
 class NewsAdapter  : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+
     val news = mutableListOf(
             News("https://www.inverse.com/gaming/genshin-impact-version-16-release-date-trailer-kazuha-klee-inzauma", "https://imgix.bustle.com/uploads/image/2021/4/26/8dd7c863-2b07-4a5d-b7fe-5081d8a37229-spriteatlastexture-ui_sprite_activity_effigy_challenge_rock-1024x1024-fmt25_156008.jpeg?w=2000&h=640&fit=crop&crop=faces&auto=format%2Ccompress", "EVERYTHING YOU NEED TO KNOW ABOUT GENSHIN IMPACT VERSION 1.6"),
             News("https://switch-brasil.com/nintendo-estudio-monolith-soft-anuncia-expansao-de-larga-escala/", "https://switch-brasil.com/wp-content/uploads/2021/04/Monolith-Soft-Scrn28042021-750x430.jpg", "Nintendo | Estúdio Monolith Soft anuncia expansão de larga escala"),
@@ -21,13 +21,9 @@ class NewsAdapter  : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     )
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var item_title: TextView
-        var item_image: ImageView
+        var item_title: TextView = itemView.findViewById(R.id.title_news)
 
         init {
-            item_title = itemView.findViewById(R.id.title_news)
-            item_image = itemView.findViewById(R.id.image_news)
-
             itemView.setOnClickListener() {
                 val url = news[layoutPosition].url
                 val intent = Intent(Intent.ACTION_VIEW)
@@ -45,9 +41,6 @@ class NewsAdapter  : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         viewHolder.item_title.text = news[i].title
-//        viewHolder.item_image.setImageBitmap(Uri.parse(news[i].url_image))
-//        viewHolder.item_image.setImageResource(news[i].url_image as Int)
-//        viewHolder.item_image.setImageURI(Uri.parse(news[i].url_image))
     }
 
     override fun getItemCount(): Int = news.size

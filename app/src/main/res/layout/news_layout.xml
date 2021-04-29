@@ -13,23 +13,11 @@
     android:foreground="?selectableItemBackground"
     android:clickable="true">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
+        android:id="@+id/title_news"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/image_news"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:src="@mipmap/ic_launcher"/>
-
-        <TextView
-            android:id="@+id/title_news"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="NOTÍCIA EXEMPLO"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:text="NOTÍCIA EXEMPLO"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
 </androidx.cardview.widget.CardView>
