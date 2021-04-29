@@ -10,6 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 
 class StartupActivity : AppCompatActivity() {
+    private fun validateInviteKey(inviteKey: String): Boolean {
+        Log.d("DEBUG_APP", "Validation: " + inviteKey.isNotEmpty())
+
+        return inviteKey.isNotEmpty()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_startup)
@@ -17,17 +23,16 @@ class StartupActivity : AppCompatActivity() {
         val startButton = findViewById<Button>(R.id.startButton)
         startButton.setOnClickListener {
             val inviteKeyInput = findViewById<TextInputLayout>(R.id.inviteKeyTextField)
-            val validationText = findViewById<TextView>(R.id.incorrect_code)
 
             Log.d("DEBUG_APP", "Código de Convite: " + inviteKeyInput.editText?.text)
 
-            if(true){
-            }else{
+            if (validateInviteKey(inviteKeyInput.editText?.text.toString())) {
+                val intent = Intent(applicationContext, MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                val validationText = findViewById<TextView>(R.id.invite_key_invalid)
                 validationText.visibility = View.VISIBLE
             }
-
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
         }
     }
 }

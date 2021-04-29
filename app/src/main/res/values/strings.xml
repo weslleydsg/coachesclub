@@ -11,6 +11,7 @@
     <string name="welcome_title">Bem vindo ao &app_name;!!!</string>
     <string name="welcome_body">Insira seu código de convite para começar:</string>
     <string name="invite_key_hint">Código de Convite</string>
+    <string name="invite_key_invalid">CÓDIGO INVÁLIDO</string>
     <string name="start_button_text">Começar</string>
 
 </resources>

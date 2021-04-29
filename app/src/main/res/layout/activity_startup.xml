@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:orientation="vertical"
     tools:context=".StartupActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/margin_spacing_size_large"
         android:textColor="@color/design_default_color_secondary_variant"
         android:textSize="@dimen/text_size_large"
@@ -18,37 +19,43 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/margin_spacing_size_large"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/margin_spacing_size_medium"
         android:text="@string/welcome_body" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:paddingHorizontal="@dimen/margin_spacing_size_small"
-        android:layout_marginHorizontal="@dimen/margin_spacing_size_xlarge"
-        android:id="@+id/inviteKeyTextField"
-        android:layout_width="match_parent"
+    <LinearLayout android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:hint="@string/invite_key_hint">
-
-        <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/margin_spacing_size_xlarge">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inviteKeyTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:hint="@string/invite_key_hint">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/incorrect_code"
-        android:text="CÓDIGO INCORRETO"
-        android:textColor="#FF0000"
-        android:textStyle="bold"
-        android:visibility="invisible"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/invite_key_invalid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/invite_key_invalid"
+            android:layout_marginTop="@dimen/margin_spacing_size_small"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/margin_spacing_size_xlarge"
         android:text="@string/start_button_text"/>
 
