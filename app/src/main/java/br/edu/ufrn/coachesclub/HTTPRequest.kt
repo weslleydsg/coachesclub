@@ -1,6 +1,5 @@
 package br.edu.ufrn.coachesclub
 
-import android.util.Log
 import br.edu.ufrn.coachesclub.ui.news.News
 import com.google.gson.GsonBuilder
 import java.io.IOException
@@ -39,10 +38,10 @@ class HTTPRequest : Callable<ArrayList<News>?> {
 
                 val apiResult: ApiResult = gson.fromJson(jsonString, ApiResult::class.java)
 
-                page = if (page!! >= apiResult.totalResults) {
-                    null
-                } else {
+                page = if (page!! < apiResult.totalResults) {
                     page!! + 1
+                } else {
+                    null
                 }
 
                 result = apiResult.articles

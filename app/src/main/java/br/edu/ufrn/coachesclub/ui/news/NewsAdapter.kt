@@ -14,6 +14,8 @@ import br.edu.ufrn.coachesclub.TaskRunner
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     var news = ArrayList<News>()
 
+    private val httpRequest = HTTPRequest()
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemTitle: TextView = itemView.findViewById(R.id.title_news)
 
@@ -30,7 +32,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     private fun loadData() {
         val taskRunner = TaskRunner()
-        taskRunner.executeAsync(HTTPRequest()) { data ->
+        taskRunner.executeAsync(httpRequest) { data ->
             if (data != null) {
                 news.addAll(data)
                 notifyDataSetChanged()
