@@ -39,8 +39,6 @@ class HTTPRequest : Callable<ArrayList<News>?> {
 
                 val apiResult: ApiResult = gson.fromJson(jsonString, ApiResult::class.java)
 
-                Log.d("DEBUG", apiResult.articles.size.toString())
-
                 page = if (page!! >= apiResult.totalResults) {
                     null
                 } else {

@@ -51,6 +51,8 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         viewHolder.itemTitle.text = news[i].title
+
+        if (i > news.size - 10) loadData()
     }
 
     override fun getItemCount(): Int = news.size
