@@ -1,3 +1,3 @@
 package br.edu.ufrn.coachesclub.data
 
-data class User(var id: String? = null, var name: String? = null)
+data class User(var id: String? = null, var email: String? = null)

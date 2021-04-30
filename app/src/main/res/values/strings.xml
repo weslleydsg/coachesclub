@@ -1,6 +1,4 @@
-<!DOCTYPE resources [
-    <!ENTITY app_name "Coaches Club">
-]>
+<!DOCTYPE resources [<!ENTITY app_name "Coaches Club">]>
 <resources>
     <string name="app_name">&app_name;</string>
     <string name="title_news">Notícias</string>

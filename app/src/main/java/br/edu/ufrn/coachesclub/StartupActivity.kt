@@ -14,41 +14,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class StartupActivity : AppCompatActivity() {
-    private fun hideErrorText() {
-        val validationText = findViewById<TextView>(R.id.invite_key_invalid)
-        validationText.visibility = View.GONE
-    }
-
-    private fun showErrorText(text: String) {
-        val validationText = findViewById<TextView>(R.id.invite_key_invalid)
-        validationText.visibility = View.VISIBLE
-    }
-
-    private fun validateInviteKey(inviteKeyId: String) {
-        hideErrorText()
-
-        val menuListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val inviteKey = dataSnapshot.getValue(InviteKey::class.java)
-
-                if (inviteKey == null || inviteKey.invalid) {
-                    showErrorText(getString(R.string.invite_key_invalid))
-                } else {
-                    val intent = Intent(applicationContext, MainActivity::class.java)
-                    startActivity(intent)
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                showErrorText(getString(R.string.invite_key_unable))
-            }
-        }
-
-        val database = FirebaseDatabase.getInstance("https://coaches-club-default-rtdb.firebaseio.com/")
-        val ref = database.getReference("InviteKeys").child(inviteKeyId)
-        ref.addListenerForSingleValueEvent(menuListener)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_startup)
@@ -59,5 +24,47 @@ class StartupActivity : AppCompatActivity() {
 
             validateInviteKey(inviteKeyInput.editText?.text.toString())
         }
+
+        val goToLogin = findViewById<Button>(R.id.go_to_login)
+        goToLogin.setOnClickListener {
+            val intent = Intent(applicationContext, LoginActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun hideErrorText() {
+        val validationText = findViewById<TextView>(R.id.invite_key_invalid)
+        validationText.visibility = View.GONE
+    }
+
+    private fun showErrorText(text: String) {
+        val validationText = findViewById<TextView>(R.id.invite_key_invalid)
+        validationText.text = text
+        validationText.visibility = View.VISIBLE
+    }
+
+    private fun validateInviteKey(inviteKeyId: String) {
+        hideErrorText()
+
+        val findByInviteKeyListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val inviteKey = dataSnapshot.getValue(InviteKey::class.java)
+
+                if (inviteKey == null || inviteKey.invalid) {
+                    showErrorText(getString(R.string.invite_key_invalid))
+                } else {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    intent.putExtra("inviteKeyId", inviteKeyId)
+                    startActivity(intent)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                showErrorText(getString(R.string.invite_key_unable))
+            }
+        }
+        val database = FirebaseDatabase.getInstance("https://coaches-club-default-rtdb.firebaseio.com/")
+        val ref = database.getReference("InviteKeys").child(inviteKeyId)
+        ref.addListenerForSingleValueEvent(findByInviteKeyListener)
     }
 }
